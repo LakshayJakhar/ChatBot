@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Gz8hN0YVgf++HzbKTM1fy7WyyX8jjLso9Ct+U3h4KloRQ5aZuXYCEhSBBPGxEe068eOoDoARfnvIGTEsps56Bg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\laksh\\Desktop\\The Odin Projects\\ChatBot\\ChatBot\\ChatBotApp\\ChatBotApp\\ChatBotApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\laksh\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

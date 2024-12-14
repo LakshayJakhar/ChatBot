@@ -1,0 +1,26 @@
+﻿@model ChatBotApp.Models.ChatMessage
+@{
+    ViewBag.Title = "Gemini AI ChatBot";
+}
+
+<h2>AI-Powered ChatBot</h2>
+
+<div>
+    <form method="post">
+        <div>
+            <label>You</label>
+            <input type="text" name="UserMessage" placeholder="Type Your Message" required/>
+        </div>
+        <button type="submit"></button>
+    </form>
+    <h1>@Model.UserMessage</h1>
+
+</div>
+<br />
+
+@if (!string.IsNullOrEmpty(Model.BotResponse))
+{
+    <div>
+        <strong>Bot:</strong> @Model.BotResponse
+    </div>
+}
