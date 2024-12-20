@@ -1,4 +1,5 @@
-﻿using ChatBotApp.Models;
+﻿using ChatBotApp.Data;
+using ChatBotApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -6,8 +7,14 @@ namespace ChatBotApp.Controllers
 {
     public class ChatBotController : Controller
     {
+        private readonly ChatDbContext _context;
 
         private readonly string apiKeyGemini = "AIzaSyCJDHQMRkiFgKncpgt1U8evCFKXO6pEwL8";
+
+        public ChatBotController(ChatDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -21,7 +28,21 @@ namespace ChatBotApp.Controllers
             if (!string.IsNullOrEmpty(chat.UserMessage))
             {
                 chat.BotResponse = await FetchGeminiResponse(chat.UserMessage);
+
+                var chatHistory = new ChatHistory
+                {
+                    UserMessage = chat.UserMessage,
+                    BotMessage = chat.BotResponse,
+                    Timestamp = DateTime.Now
+                };
+
+                _context.ChatHistories.Add(chatHistory);
+                await _context.SaveChangesAsync();
             }
+
+            var previousChats = _context.ChatHistories.OrderByDescending(c => c.Timestamp).Take(10).ToList();
+            ViewBag.PreviousChats = previousChats;
+
             return View(chat);
         }
 

@@ -24,3 +24,17 @@
         <strong>Bot:</strong> @Model.BotResponse
     </div>
 }
+
+<h3>Previous Chats:</h3>
+<ul>
+    @if (ViewBag.PreviousChats != null)
+    {
+        foreach (var chat in ViewBag.PreviousChats)
+        {
+            <li><strong>You:</strong> @chat.UserMessage <br /><strong>Bot:</strong> @chat.BotMessage</li>
+        }
+    }
+    else
+    {
+        <li>No previous chats found.</li>
+    }
